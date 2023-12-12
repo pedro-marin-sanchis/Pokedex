@@ -31,6 +31,7 @@ open class PokeApiV2PokemonDataRetriever(): PokemonDataRetriever {
                 val loadTime = measureTimeMillis {
                     pokemonMap.putAll(getPokemonListCyclesDistribution(_limit, _offset))
                 }
+                println("POKEMON: ${pokemonMap}")
                 println("POKEMON LIST LOAD TIME: ${loadTime.toFloat()/1000}s")
                 pokemonMap
             }
@@ -117,7 +118,7 @@ open class PokeApiV2PokemonDataRetriever(): PokemonDataRetriever {
         return pokemonList
     }
 
-    private suspend fun getResponseAsJSONObject(url: String): JSONObject {
+    open suspend fun getResponseAsJSONObject(url: String): JSONObject {
         var responseJSONObject = JSONObject()
         return withContext(Dispatchers.IO) {
             responseJSONObject = JSONObject(URL(url).readText())

@@ -9,13 +9,24 @@ import java.io.InputStreamReader
 
 
 class OfflinePokeApiV2PokemonDataRetriever: PokeApiV2PokemonDataRetriever() {
-    @Override
-    private suspend fun getResponseAsJSONObject(url: String): JSONObject {
+    override suspend fun getResponseAsJSONObject(url: String): JSONObject {
         var responseJSONObject = JSONObject()
         var fileName: String = ""
 
         if (url == "https://pokeapi.co/api/v2/pokemon?limit=${_limit}&offset=${_offset}") {
-            fileName == "pokemon-list.json"
+            fileName = "res/raw/pokemonlist.json" // Use assignment operator '=' instead of '=='
+        }
+
+        val regexURL = "^https://pokeapi.co/api/v2/pokemon/\\d+$".toRegex()
+
+        if (url.matches(regexURL)) {
+
+            val regex = """\d+$""".toRegex()
+            val matchResult = regex.find(url)
+            val numberAtEnd = matchResult?.value
+            val extractedNumber: Int = numberAtEnd?.toIntOrNull() ?: 1
+
+            fileName = "res/raw/pokemon${extractedNumber}.json"
         }
 
         return scope.async {
