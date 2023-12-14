@@ -63,9 +63,11 @@ fun PokemonPLP() {
                         .fillMaxWidth()
                         .height(8.dp))
                 }
-                items(itemsPerPage) {
-                    val pokemon = pokemonList!!.toSortedMap()[pokemonList!!.toSortedMap().keys.elementAt(((currentPage+1)*itemsPerPage)+it)]
-                    PokemonCard(id = it, name = pokemon.toString(), navController = navHostController!!)
+                items(pokemonList!!.size) {
+                    if (it < currentPage*itemsPerPage && it > (currentPage-1)*itemsPerPage) {
+                        val pokemon = pokemonList!!.toSortedMap()[pokemonList!!.toSortedMap().keys.elementAt(it-1)]
+                        PokemonCard(id = it, name = pokemon.toString(), navController = navHostController!!)
+                    }
                 }
             }
             Row(

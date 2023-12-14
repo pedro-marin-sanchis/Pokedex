@@ -21,8 +21,11 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
@@ -164,27 +167,40 @@ private fun PokemonImageCard(pokemon: Pokemon?) {
         ) {
             Box() {
                 Box() {
-                    AsyncImage(
-                        model = pokemon.imageURL,
-                        contentDescription = null,
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(10.dp)
-                            .blur(5.dp)
-                            .graphicsLayer {
-                                translationY = 10f
-                                translationX = 10f
-                                scaleX = 1.1f
-                                scaleY = 1.1f
-                                alpha = 0.10f
-                            },
-                        contentScale = ContentScale.Fit,
-                        colorFilter = ColorFilter.tint(Color.Black)
-                    )
+                    if (pokemon.imageURL.equals("null")) {
+                        Column(
+                            verticalArrangement = Arrangement.Center,
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                            modifier = Modifier.fillMaxSize()
+                        ) {
+                            Icon(imageVector = Icons.Default.Clear, contentDescription = "Offline Image", modifier = Modifier.size(100.dp))
+                            Text(text = "You are offline")
+                            Spacer(modifier = Modifier.height(30.dp))
+                        }
+                    } else {
+                        AsyncImage(
+                            model = pokemon.imageURL,
+                            contentDescription = null,
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(10.dp)
+                                .blur(5.dp)
+                                .graphicsLayer {
+                                    translationY = 10f
+                                    translationX = 10f
+                                    scaleX = 1.1f
+                                    scaleY = 1.1f
+                                    alpha = 0.10f
+                                },
+                            contentScale = ContentScale.Fit,
+                            colorFilter = ColorFilter.tint(Color.Black)
+                        )
+                    }
                 }
                 Box() {
+                    val model = if (pokemon.imageURL.equals("null")) "" else pokemon.imageURL
                     AsyncImage(
-                        model = pokemon.imageURL,
+                        model = model,
                         contentDescription = null,
                         modifier = Modifier
                             .fillMaxSize()
