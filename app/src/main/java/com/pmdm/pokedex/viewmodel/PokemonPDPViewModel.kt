@@ -28,7 +28,9 @@ class PokemonPDPViewModel: ViewModel() {
     fun setPokemon(id: Int) {
         _isLoading.value = true
         viewModelScope.launch {
-            _pokemon.value = dataRetriever.getPokemon(id)
+            if (dataRetriever != null) {
+                _pokemon.value = dataRetriever!!.getPokemon(id)
+            }
             _statsAnimationPlayed.value = false
             _isLoading.value = false
         }

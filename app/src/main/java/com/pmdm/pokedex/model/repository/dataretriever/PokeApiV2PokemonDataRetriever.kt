@@ -1,5 +1,8 @@
-package com.pmdm.pokedex.model.dataretriever
+package com.pmdm.pokedex.model.repository.dataretriever
 
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import com.pmdm.pokedex.model.Pokemon
 import com.pmdm.pokedex.model.PokemonStat
 import com.pmdm.pokedex.model.PokemonType
@@ -17,12 +20,29 @@ import java.net.URL
 import kotlin.system.measureTimeMillis
 
 
-open class PokeApiV2PokemonDataRetriever(): PokemonDataRetriever {
+open class PokeApiV2PokemonDataRetriever(val context: Context): PokemonDataRetriever {
 
     val scope = CoroutineScope(Dispatchers.IO)
     private val _pokeApiHost = "pokeapi.co"
     val _limit: Int = 5000
     val _offset: Int = 0
+
+    init {
+        if (!checkInternetConnection(context)) {
+            throw Exception()
+        }
+    }
+
+    private fun checkInternetConnection(context: Context): Boolean {
+        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager?
+
+        if (connectivityManager != null) {
+            val network = connectivityManager.activeNetwork
+            val capabilities = connectivityManager.getNetworkCapabilities(network)
+            return capabilities?.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) == true
+        }
+        return false
+    }
 
     override suspend fun getPokemonList(): Map<Int, String> {
         return scope.async {

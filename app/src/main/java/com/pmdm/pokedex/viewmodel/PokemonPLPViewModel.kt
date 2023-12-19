@@ -20,7 +20,7 @@ class PokemonPLPViewModel(): ViewModel() {
     init {
         viewModelScope.launch {
             val pokemonList = withContext(Dispatchers.IO) {
-                dataRetriever.getPokemonList()
+                dataRetriever!!.getPokemonList()
             }
             _pokemonList.postValue(pokemonList)
             _isLoading.value = false
