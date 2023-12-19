@@ -1,4 +1,4 @@
-package com.pmdm.pokedex.viewModel
+package com.pmdm.pokedex.viewmodel
 
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.LiveData

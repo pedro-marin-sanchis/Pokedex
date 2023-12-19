@@ -48,8 +48,8 @@ import coil.compose.AsyncImage
 import com.pmdm.pokedex.model.Pokemon
 import com.pmdm.pokedex.model.PokemonStat
 import com.pmdm.pokedex.model.PokemonType
-import com.pmdm.pokedex.viewModel.pokedexTopAppBarViewModel
-import com.pmdm.pokedex.viewModel.pokemonPDPViewModel
+import com.pmdm.pokedex.viewmodel.pokedexTopAppBarViewModel
+import com.pmdm.pokedex.viewmodel.pokemonPDPViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 

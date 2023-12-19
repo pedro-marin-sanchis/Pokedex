@@ -30,9 +30,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.pmdm.pokedex.viewModel.pokedexTopAppBarViewModel
-import com.pmdm.pokedex.viewModel.pokemonPDPViewModel
-import com.pmdm.pokedex.viewModel.pokemonPLPViewModel
+import com.pmdm.pokedex.viewmodel.pokedexTopAppBarViewModel
+import com.pmdm.pokedex.viewmodel.pokemonPDPViewModel
+import com.pmdm.pokedex.viewmodel.pokemonPLPViewModel
 
 @Composable
 fun PokemonPLP() {

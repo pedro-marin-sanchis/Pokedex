@@ -1,4 +1,4 @@
-package com.pmdm.pokedex.model.dataRetriever
+package com.pmdm.pokedex.model.dataretriever
 
 import com.pmdm.pokedex.model.Pokemon
 

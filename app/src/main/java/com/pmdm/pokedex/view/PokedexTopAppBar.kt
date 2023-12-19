@@ -21,7 +21,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.pmdm.pokedex.R
 import com.pmdm.pokedex.view.ui.theme.setStatusBarColor
-import com.pmdm.pokedex.viewModel.pokedexTopAppBarViewModel
+import com.pmdm.pokedex.viewmodel.pokedexTopAppBarViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
