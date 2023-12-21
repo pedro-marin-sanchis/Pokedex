@@ -18,12 +18,12 @@ import androidx.navigation.compose.rememberNavController
 import com.pmdm.pokedex.model.repository.PokemonRepository
 import com.pmdm.pokedex.view.ui.theme.PokedexTheme
 import com.pmdm.pokedex.viewmodel.dataRetriever
-import dagger.hilt.android.HiltAndroidApp
+import dagger.hilt.android.AndroidEntryPoint
 
 @SuppressLint("StaticFieldLeak") // TODO: Care about this memory leak.
 var navHostController: NavHostController? = null
 
-@HiltAndroidApp
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     @OptIn(ExperimentalMaterial3Api::class)
